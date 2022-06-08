@@ -9,7 +9,12 @@ public class Main {
         Set set1 = new Set(1, 25, 3);
         Set set2 = new Set(9, 5, 25, 17);
         //Set set3 = new Set(getOdd(100, 1000));
-        System.out.println(set1.toString());
+        System.out.println(set2.toString());
+        System.out.println(set2.numOfElements());
+        set2.removeFromSet(17);
+        System.out.println(set2.toString());
+        System.out.println(set2.numOfElements());
+        System.out.println(set2.isMember(25));
     }
 
     private static int[] getOdd(int min, int max) {
