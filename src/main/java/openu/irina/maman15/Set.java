@@ -15,11 +15,11 @@ public class Set {
 
     public boolean isMember(int num) {
         IntNode current = this.head;
-        while (true){
-            if (current.getValue()==num){
+        while (true) {
+            if (current.getValue() == num) {
                 return true;
-            }else {
-                if (isLast(current)){
+            } else {
+                if (isLast(current)) {
                     return false;
                 }
                 current = current.getNext();
@@ -27,28 +27,63 @@ public class Set {
         }
     }
 
-    public boolean equals(Set other) {
-        return false;
-    }
+
 
     public int numOfElements() {
-        return numOfElements(this.head,1);
+        return numOfElements(this.head, 1);
     }
 
-    private int numOfElements(IntNode node, int i){
-        if (isEmpty()){
+    private int numOfElements(IntNode node, int i) {
+        if (isEmpty()) {
             return 0;
         }
-        if (isLast(node)){
+        if (isLast(node)) {
             return i;
         }
         return numOfElements(node.getNext(), ++i);
 
     }
 
-    public boolean subSet(Set other) {
-        return false;
+    public boolean equals(Set other) {
+        return subSet(other,true);
     }
+    public boolean subSet(Set other){
+        return subSet(other, false);
+    }
+
+
+    private boolean subSet(Set other, boolean isEqual) {
+        if (other == null) {
+            return false;
+        }
+        if (other.numOfElements() > this.numOfElements()) {
+            return false;
+        }
+        if (isEqual){
+            if (this.numOfElements() != other.numOfElements()) {
+                return false;
+            }
+        }
+        boolean found = false;
+        for (int i = 0; i < other.numOfElements(); i++) {
+            int otherValue = other.getValueByIndex(i);
+            for (int j = 0; j < this.numOfElements(); j++) {
+                int thisValue = this.getValueByIndex(j);
+                if (otherValue == thisValue) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                return false;
+            } else {
+                found = false;
+            }
+        }
+        return true;
+    }
+
+
 
     public void addToSet(int x) {
         IntNode newNode = new IntNode(x, null);
@@ -72,28 +107,22 @@ public class Set {
     public void removeFromSet(int x) {
         IntNode prev = null;
         IntNode current = this.head;
-        while (true){
-            if (current.getValue()==x){
-                if (prev==null){
+        while (true) {
+            if (current.getValue() == x) {
+                if (prev == null) {
                     this.head = current.getNext();
-                }
-                else {
+                } else {
                     prev.setNext(current.getNext());
                 }
                 return;
-            }else {
-                if (isLast(current)){
+            } else {
+                if (isLast(current)) {
                     throw new RuntimeException("Not found element " + x);
                 }
                 prev = current;
                 current = current.getNext();
             }
-
         }
-
-
-
-
     }
 
     private boolean isLast(IntNode node) {
@@ -102,17 +131,16 @@ public class Set {
 
     @Override
     public String toString() {
-        if (isEmpty()){
+        if (isEmpty()) {
             return "";
         }
         IntNode node = this.head;
         StringBuilder sb = new StringBuilder();
-        while (true){
+        while (true) {
             sb.append(node.getValue());
             if (!isLast(node)) {
                 sb.append(",");
-            }
-            else {
+            } else {
                 break;
             }
             node = node.getNext();
@@ -120,21 +148,21 @@ public class Set {
         return sb.toString();
     }
 
-    /*private int getElementByIndex(int i) {
+    private int getValueByIndex(int i) {
         if (isEmpty()) {
             throw new IllegalArgumentException("set is empty");
         }
-        IntNode node = getNodeByIndex(this.head, 2);
+        IntNode node = getNodeByIndex(this.head, i);
         return node.getValue();
 
-    }*/
+    }
 
-    /*private IntNode getNodeByIndex(IntNode node, int i) {
+    private IntNode getNodeByIndex(IntNode node, int i) {
         if (i == 0) {
             return node;
         }
         return getNodeByIndex(node.getNext(), --i);
-    }*/
+    }
 
     public Set intersection(Set other) {
         return null;
