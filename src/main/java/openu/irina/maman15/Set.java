@@ -9,11 +9,32 @@ public class Set {
         }
     }
 
+    public Set(Set set) {
+        IntNode node = set.head;
+        while (node != null) {
+            addToSet(node.getValue());
+            node = node.getNext();
+        }
+    }
+
+    public Set union(Set other) {
+        Set newSet = new Set(this);
+        IntNode node = other.head;
+        while (node != null) {
+            newSet.addToSet(node.getValue());
+            node = node.getNext();
+        }
+        return newSet;
+    }
+
     public boolean isEmpty() {
         return this.head == null;
     }
 
     public boolean isMember(int num) {
+        if (isEmpty()) {
+            return false;
+        }
         IntNode current = this.head;
         while (true) {
             if (current.getValue() == num) {
@@ -26,7 +47,6 @@ public class Set {
             }
         }
     }
-
 
 
     public int numOfElements() {
@@ -45,9 +65,10 @@ public class Set {
     }
 
     public boolean equals(Set other) {
-        return subSet(other,true);
+        return subSet(other, true);
     }
-    public boolean subSet(Set other){
+
+    public boolean subSet(Set other) {
         return subSet(other, false);
     }
 
@@ -59,7 +80,7 @@ public class Set {
         if (other.numOfElements() > this.numOfElements()) {
             return false;
         }
-        if (isEqual){
+        if (isEqual) {
             if (this.numOfElements() != other.numOfElements()) {
                 return false;
             }
@@ -84,10 +105,10 @@ public class Set {
     }
 
 
-
     public void addToSet(int x) {
+        if (isMember(x)) return;
         IntNode newNode = new IntNode(x, null);
-        if (this.head == null) {
+        if (isEmpty()) {
             this.head = newNode;
         } else {
             IntNode lastNode = getLastNode(this.head);
@@ -165,14 +186,33 @@ public class Set {
     }
 
     public Set intersection(Set other) {
-        return null;
+        return intersection(other,true);
     }
 
-    public Set union(Set other) {
-        return null;
+    public Set intersection(Set other, boolean isIntersection) {
+        Set newSet = new Set();
+        IntNode node = other.head;
+        while (node!=null){
+            int value = node.getValue();
+            if (isIntersection){
+                if(isMember(value)){
+                    newSet.addToSet(value);
+                }
+            } else {
+                //TODO wrong logic. diff is when element not exists in both sets
+                if(!isMember(value)){
+                    newSet.addToSet(value);
+                }
+            }
+
+            node = node.getNext();
+        }
+        return newSet;
     }
+
 
     public Set difference(Set other) {
-        return null;
+        return intersection(other,false);
     }
+
 }
