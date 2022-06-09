@@ -1,4 +1,6 @@
-package openu.irina.maman15;
+package openu.irina.maman15.impl2;
+
+
 
 public class IntList {
     private IntNode _head;
@@ -84,14 +86,7 @@ public class IntList {
         } // of if (the list is not empty)
     }
 
-    public void printList() {
-        IntNode temp = _head;
-        while (temp != null) {
-            System.out.print(temp.getValue() + " --> ");
-            temp = temp.getNext();
-        }
-        System.out.println(" null");
-    }
+
 
     public int length() {
         IntNode temp = _head;
@@ -139,6 +134,15 @@ public class IntList {
             System.out.print(p.getValue() + " --> ");
             printRec(p.getNext());
         }
+    }
+
+    public void printList() {
+        IntNode temp = _head;
+        while (temp != null) {
+            System.out.print(temp.getValue() + " --> ");
+            temp = temp.getNext();
+        }
+        System.out.println(" null");
     }
 
     private IntNode merge(IntNode list1, IntNode list2) {

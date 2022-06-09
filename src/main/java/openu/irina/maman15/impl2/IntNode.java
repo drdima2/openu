@@ -1,8 +1,10 @@
-package openu.irina.maman15;
+package openu.irina.maman15.impl2;
 
 public class IntNode {
     private int _value;
     private IntNode _next;
+
+
 
     public IntNode(int v, IntNode n) {
         _value = v;

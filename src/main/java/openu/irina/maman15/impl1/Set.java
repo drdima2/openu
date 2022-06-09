@@ -1,4 +1,4 @@
-package openu.irina.maman15;
+package openu.irina.maman15.impl1;
 
 public class Set {
     private IntNode head;
