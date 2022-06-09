@@ -9,6 +9,11 @@ public class IntNode {
         _next = n;
     }
 
+    public IntNode(int v) {
+        this._value = v;
+        this._next = null;
+    }
+
     public int getValue() {
         return _value;
     }
