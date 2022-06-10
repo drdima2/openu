@@ -1,7 +1,6 @@
 package openu.irina.maman15.impl2;
 
 
-
 public class Set {
 
     private IntNode _head;
@@ -10,31 +9,52 @@ public class Set {
     public Set(int... elements) {
         for (int i = 0; i < elements.length; i++) {
             if (!isMember(elements[i])) {
-                add(elements[i]);
-                //addToSet(elements[i]);
+                //add(elements[i]);
+                addToSet(elements[i]);
             }
         }
     }
 
-    public void add(int v){
-        if (_head==null){
-            _head = new IntNode(v,null);
-            list=new IntList(_head);
-        }
-        else {
+    /**
+     * required method
+     *
+     * @param v
+     */
+    public void addToSet(int v) {
+        if (_head == null) {
+            _head = new IntNode(v, null);
+            list = new IntList(_head);
+        } else {
             list.add(v);
         }
     }
 
 
+    /**
+     * required method
+     *
+     * @param other
+     * @return
+     */
     public Set union(Set other) {
         return null;
     }
 
+    /**
+     * required method
+     *
+     * @return
+     */
     public boolean isEmpty() {
-        return false;
+        return list.empty();
     }
 
+    /**
+     * required method
+     *
+     * @param num
+     * @return
+     */
     public boolean isMember(int num) {
         if (list.empty()) {
             return false;
@@ -52,19 +72,37 @@ public class Set {
         }
     }
 
+    private boolean isLast(IntNode node) {
+        return node.getNext() == null;
+    }
 
+
+    /**
+     * required method
+     *
+     * @return
+     */
     public int numOfElements() {
         return list.length();
     }
 
-    private int numOfElements(IntNode node, int i) {
-        return 0;
-    }
 
+    /**
+     * required method
+     *
+     * @param other
+     * @return
+     */
     public boolean equals(Set other) {
         return subSet(other, true);
     }
 
+    /**
+     * required method
+     *
+     * @param other
+     * @return
+     */
     public boolean subSet(Set other) {
         return subSet(other, false);
     }
@@ -74,49 +112,50 @@ public class Set {
         return false;
     }
 
-
-    public void addToSet(int x) {
-
-    }
-
-    private IntNode getLastNode(IntNode node) {
-        return null;
-    }
-
+    /**
+     * required method
+     *
+     * @param x
+     */
     public void removeFromSet(int x) {
-
+        list.remove(x);
     }
 
-    private boolean isLast(IntNode node) {
-        return node.getNext() == null;
-    }
-
+    /**
+     * required method
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return null;
     }
 
-    public void print(){
+    public void print() {
         list.printList();
     }
 
-    private int getValueByIndex(int i) {
-        return 0;
-    }
 
-    private IntNode getNodeByIndex(IntNode node, int i) {
-        return null;
-    }
 
+
+
+    /**
+     * required method
+     *
+     * @param other
+     * @return
+     */
     public Set intersection(Set other) {
         return null;
     }
 
-    public Set intersection(Set other, boolean isIntersection) {
-        return null;
-    }
 
-
+    /**
+     * required method
+     *
+     * @param other
+     * @return
+     */
     public Set difference(Set other) {
         return null;
     }
