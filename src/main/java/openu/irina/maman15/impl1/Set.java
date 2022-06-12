@@ -199,7 +199,7 @@ public class Set {
                     newSet.addToSet(value);
                 }
             } else {
-                //TODO wrong logic. diff is when element not exists in both sets
+                // TODO wrong logic. diff is when element not exists in both sets
                 if(!isMember(value)){
                     newSet.addToSet(value);
                 }
